@@ -2,6 +2,8 @@
 
 This is a **MailSender** application that allows you to schedule and send emails using PHPMailer, powered by **InfinityFree**'s free hosting services. The application utilizes Gmail's SMTP server to send emails and schedules them using a cron job via **EasyCron**.
 
+GitHub Repository: A similar project with additional details and configurations can be found here: 🔗 PHPMailer Gmail SMTP Integration - https://github.com/r0han01/PHPMailer-Gmail-SMTP-Integration
+
 ## Project Overview
 
 This application is designed to send scheduled emails based on the database entries. It allows users to:
@@ -50,10 +52,13 @@ This setup ensures that scheduled emails are automatically sent without manual i
 
 The application integrates a **SQL database** hosted by **InfinityFree**. The scheduled emails are tracked in the `email_schedule` table, where emails are marked as `pending` until they are sent, and their status is updated to `sent` once successfully delivered.
 ###
-![ScreenShot Tool -20250201115620](https://github.com/user-attachments/assets/0248698b-a9a3-430d-bbae-d4a853376fbd)
+![ScreenShot Tool -20250201115620 (1)](https://github.com/user-attachments/assets/d8ec988a-082e-4199-8f58-4e78b876c527)
 ###
 ## Directory Structure
 - This directory structure is the same as the one uploaded to GitHub & similar to the infinityfree.com File Manager.
+###
+![ScreenShot Tool -20250201120239 (1)](https://github.com/user-attachments/assets/b9612415-7951-409b-801a-72831cea4eaa)
+###
 ```
 📁 htdocs
    ├── 📁 App
@@ -124,7 +129,9 @@ The application integrates a **SQL database** hosted by **InfinityFree**. The sc
   echo "PHP is working!";
   ?>
   ```
-
+###
+![ScreenShot Tool -20250201120045](https://github.com/user-attachments/assets/7c9cbb36-356f-4b76-a707-d0c2b5e834f4)
+###
 - **`db_connect.php`**: This file establishes a connection to your SQL database hosted by InfinityFree. We used their free SQL database service to manage and schedule emails.
 
 - **`schedule_email.php` and `schedule_email.html`**: These files handle scheduling the emails in the database. The `schedule_email.php` allows users to input email details (e.g., recipient, subject, message), and the status is marked as `pending`. You can manage your scheduled emails and mark them as `sent` after they are successfully delivered.
@@ -148,6 +155,9 @@ The application integrates a **SQL database** hosted by **InfinityFree**. The sc
   - **`message`**: The body of the email.
   - **`scheduled_time`**: The time the email is scheduled to be sent.
   - **`status`**: Indicates whether the email is `pending` or `sent`.
+###
+![ScreenShot Tool -20250201122110 (1)](https://github.com/user-attachments/assets/09cf944e-ec40-4f18-a281-91746f326a82)
+###
 
 - **`send_scheduled_emails.php`**: This script is triggered by a **cron job** (we used EasyCron) to check for emails scheduled in the database and send them at the scheduled time using **PHPMailer**.
 
@@ -165,6 +175,7 @@ The application integrates a **SQL database** hosted by **InfinityFree**. The sc
 - Create a new database and a user.
 - Use the **phpMyAdmin** panel to import the SQL table structure for `email_schedule`.
 - Connect the database to your app by configuring the `db_connect.php` file with the appropriate credentials.
+
 
 ### 2. **Creating Gmail App Password**
 
@@ -360,6 +371,8 @@ By using **phpdotenv**, your sensitive information is stored securely, and it's 
 
 
 This section makes sure users are aware of the security measures taken, while also providing a way to handle credentials securely in future projects, along with the context about limitations due to the hosting service.
+
+
 
 ## Final Thoughts
 
