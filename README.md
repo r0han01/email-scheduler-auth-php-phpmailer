@@ -1,4 +1,4 @@
-# MailSender Application
+# MailSchedular Application
 
 This is a **MailSender** application that allows you to schedule and send emails using PHPMailer, powered by **InfinityFree**'s free hosting services. The application utilizes Gmail's SMTP server to send emails and schedules them using a cron job via **EasyCron**.
 
