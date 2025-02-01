@@ -7,8 +7,46 @@ This is a **MailSender** application that allows you to schedule and send emails
 This application is designed to send scheduled emails based on the database entries. It allows users to:
 
 - **Register and Login**: Create accounts and authenticate users for sending emails.
+###
+![ScreenShot Tool -20250201114404](https://github.com/user-attachments/assets/9e00ba98-941a-4da0-b680-d5d221d2ac3b)
+###
+![ScreenShot Tool -20250201114427](https://github.com/user-attachments/assets/709d032a-da33-4b20-a561-981f63fce7cd)
+###
+![ScreenShot Tool -20250201114456](https://github.com/user-attachments/assets/731e2219-10c6-4c18-aed6-b71d1496540b)
+###
 - **Schedule Emails**: Schedule emails to be sent at a later time.
-- **Send Emails Automatically**: Using a cron job to trigger the sending of emails at the scheduled time.
+###
+![ScreenShot Tool -20250201114520](https://github.com/user-attachments/assets/dbba7365-925e-47d8-8796-8fbf54f04463)
+###
+**Automating Email Scheduling with EasyCron**  
+
+To ensure emails are sent automatically at the scheduled time, we use a **cron job** to periodically execute `send_scheduled_emails.php`. This script checks the database for emails marked as "pending" and sends them if their scheduled time has arrived.  
+
+#### **Setting Up the Cron Job with EasyCron**  
+Since free hosting services like **InfinityFree** do not provide built-in cron jobs, we use **EasyCron**, a third-party cron job scheduling service. Below is a breakdown of the EasyCron dashboard:  
+
+- **Account:** `rk987828@gmail.com`  
+- **Plan:** Individual Trial  
+- **Cron Jobs:** 1 Active Job  
+- **Schedule:** Runs every day at `13:01` (UTC)  
+- **Target Script:** `phptestingtutedude.ct.ws/App/send_scheduled_emails.php`  
+
+This means that every day, at the specified time, EasyCron triggers our script, which:  
+1. Fetches unsent emails from the `email_schedule` table.  
+2. Uses **PHPMailer** to send them via Gmail’s SMTP server.  
+3. Updates the email status in the database.  
+
+#### **How the Cron Job Works**  
+- The **EasyCron** scheduler automatically **refreshes the script URL** daily, triggering the email-sending function.  
+- Emails scheduled for that day are processed and sent using **PHPMailer**.  
+- The status of each email is updated in the **email_schedule** table.  
+
+###
+![ScreenShot Tool -20250201115343](https://github.com/user-attachments/assets/d9b1ecd4-5bc7-49d9-90fd-ab9d9e6ca60d)
+###
+This setup ensures that scheduled emails are automatically sent without manual intervention, even on free hosting environments.
+
+###
 
 The application integrates a **SQL database** hosted by **InfinityFree**. The scheduled emails are tracked in the `email_schedule` table, where emails are marked as `pending` until they are sent, and their status is updated to `sent` once successfully delivered.
 
