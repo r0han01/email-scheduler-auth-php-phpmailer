@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Schedule Email</title>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html, body {
+            height: 100%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background-image: url('https://images.unsplash.com/photo-1477346611705-65d1883cee1e?dpr=0.800000011920929&auto=format&fit=crop&w=1199&h=800&q=80&cs=tinysrgb&crop=');
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+            font-family: 'Montserrat', sans-serif;
+            color: #fff;
+            padding: 0 10px;
+        }
+
+        .form-container {
+            display: flex;
+            flex-direction: column;
+            padding: 30px;
+            background: rgba(255, 255, 255, 0.2);
+            border-radius: 12px;
+            backdrop-filter: blur(15px);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+            width: 100%;
+            max-width: 600px;
+            margin: 0 auto;
+            text-align: center;
+        }
+
+        h2 {
+            font-size: 24px;
+            margin-bottom: 20px;
+            font-weight: 700;
+        }
+
+        .form {
+            display: flex;
+            flex-direction: column;
+            width: 100%;
+        }
+
+        .form__field {
+            margin-bottom: 1.5rem;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 5px;
+            font-size: 14px;
+        }
+
+        .form__input, .form__textarea, .form__datetime {
+            width: 100%;
+            padding: 10px;
+            background-color: rgba(255, 255, 255, 0.3);
+            color: #fff;
+            border: 1px solid #ccc;
+            border-radius: 8px;
+            outline: none;
+        }
+
+        .form__submit-button {
+            padding: 12px;
+            background: linear-gradient(135deg, #e44d86, #d44179);
+            border: none;
+            border-radius: 5px;
+            color: white;
+            cursor: pointer;
+            font-weight: bold;
+            transition: all 0.3s;
+        }
+
+        .form__submit-button:hover {
+            background: linear-gradient(135deg, #d44179, #e44d86);
+        }
+
+        .alert {
+        margin-top: 0px;  /* Move message up */
+        margin-bottom: 20px; /* Add space below */
+        padding: 10px;
+        border-radius: 5px;
+        display: none;
+        }
+
+        .success {
+            background-color: #28a745;
+            color: #fff;
+        }
+
+        .error {
+            background-color: #dc3545;
+            color: #fff;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="form-container">
+        <h2>Schedule Email</h2>
+
+        <div id="responseMessage" class="alert"></div> <!-- Success/Error Message -->
+
+        <form id="emailForm" class="form">
+            <div class="form__field">
+                <label for="email">Recipient Email:</label>
+                <input type="email" id="email" name="email" class="form__input" required>
+            </div>
+
+            <div class="form__field">
+                <label for="subject">Subject:</label>
+                <input type="text" id="subject" name="subject" class="form__input" required>
+            </div>
+
+            <div class="form__field">
+                <label for="message">Message:</label>
+                <textarea id="message" name="message" class="form__textarea" rows="4" required></textarea>
+            </div>
+
+            <div class="form__field">
+                <label for="schedule_time">Scheduled Date and Time:</label>
+                <input type="datetime-local" id="schedule_time" name="schedule_time" class="form__datetime" required>
+            </div>
+
+            <button type="submit" class="form__submit-button">Schedule Email</button>
+        </form>
+    </div>
+
+    <script>
+        document.getElementById("emailForm").addEventListener("submit", function(event) {
+            event.preventDefault(); // Prevent normal form submission
+
+            let formData = new FormData(this);
+
+            fetch("schedule_email.php", {
+                method: "POST",
+                body: formData
+            })
+            .then(response => response.json()) // Parse JSON response
+            .then(data => {
+                let messageDiv = document.getElementById("responseMessage");
+                messageDiv.style.display = "block"; // Show message
+                messageDiv.textContent = data.message;
+
+                if (data.status === "success") {
+                    messageDiv.className = "alert success";
+                    document.getElementById("emailForm").reset(); // Clear form on success
+                } else {
+                    messageDiv.className = "alert error";
+                }
+            })
+            .catch(error => {
+                console.error("Error:", error);
+            });
+        });
+    </script>
+
+</body>
+</html>
