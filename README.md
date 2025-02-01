@@ -262,7 +262,7 @@ In this application, we use **PHPMailer** to send emails securely. PHPMailer is 
 
 2. **Upload PHPMailer to Your Application Directory**:
    - Upload the **`src`** folder to the **`App`** directory of your application. This should be structured as shown below:
-````
+```
    📁 **htdocs**  
    ├── 📁 **App**  
    │   ├── 📁 **src**  
