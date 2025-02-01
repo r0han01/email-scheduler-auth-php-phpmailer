@@ -49,7 +49,9 @@ This setup ensures that scheduled emails are automatically sent without manual i
 ###
 
 The application integrates a **SQL database** hosted by **InfinityFree**. The scheduled emails are tracked in the `email_schedule` table, where emails are marked as `pending` until they are sent, and their status is updated to `sent` once successfully delivered.
-
+###
+![ScreenShot Tool -20250201115620](https://github.com/user-attachments/assets/0248698b-a9a3-430d-bbae-d4a853376fbd)
+###
 ## Directory Structure
 - This directory structure is the same as the one uploaded to GitHub & similar to the infinityfree.com File Manager.
 ```
