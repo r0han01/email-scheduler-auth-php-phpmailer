@@ -364,7 +364,9 @@ By using **phpdotenv**, your sensitive information is stored securely, and it's 
 
 - **Account Deletion**:
   Please note that **I will be deleting my InfinityFree account** after completing this project, so you won't be able to access my email credentials once that happens.
-
+###
+![ScreenShot Tool -20250201123028](https://github.com/user-attachments/assets/aefaeda1-a844-4a82-bf93-d5da7706229d)
+###
 - **Important**:
   To **free up space** on InfinityFree, **do not delete the `index.php` file** from the root directory, as it is required for the website to work properly on InfinityFree.
 
